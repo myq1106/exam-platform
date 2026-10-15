@@ -32,6 +32,9 @@ public class ClassInfo implements Serializable {
     /** 班级描述 */
     private String description;
 
+    /** 邀请码（6 位，学生加入班级用） */
+    private String inviteCode;
+
     /** 状态：1 正常 0 归档 */
     private Integer status;
 

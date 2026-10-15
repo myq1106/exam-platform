@@ -53,6 +53,16 @@ public class LoginUser implements UserDetails {
         return user.getUsername();
     }
 
+    /**
+     * 获取当前登录用户 id（委托给 {@link SysUser}）。
+     */
+    public Long getUserId() {
+        return user.getId();
+    }
+
+
+
+
     @Override
     public boolean isAccountNonExpired() {
         return true;

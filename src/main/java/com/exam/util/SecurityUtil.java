@@ -25,4 +25,11 @@ public final class SecurityUtil {
         }
         throw new BusinessException(Result.CODE_UNAUTHORIZED, "未登录或登录已过期");
     }
+
+    /**
+     * 获取当前登录用户 id。
+     */
+    public static Long getCurrentUserId() {
+        return getLoginUser().getUserId();
+    }
 }
