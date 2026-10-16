@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.exam.mapper.QuestionMapper">
+
+    <!--
+        分页查询题目，LEFT JOIN 知识点获取名称。
+        知识点表通过子查询只暴露 id / name，避免与 question 表的 difficulty、create_time 等列产生歧义，
+        从而让 ${ew.customSqlSegment} 生成的未限定列名（如 difficulty = ?）能正确解析到 question 表。
+        动态 SQL 拼接器：${ew.customSqlSegment}
+    -->
+
+    <select id="selectQuestionPage" resultType="com.exam.vo.QuestionVO">
+        SELECT q.id,
+               q.title,
+               q.question_type,
+               q.difficulty,
+               q.knowledge_id,
+               q.options,
+               q.standard_answer,
+               q.score,
+               q.review_status,
+               q.creator_id,
+               q.create_time,
+               q.update_time,
+               k.name AS knowledge_name
+        FROM question q
+        LEFT JOIN (SELECT id, name FROM knowledge_point) k ON q.knowledge_id = k.id
+        ${ew.customSqlSegment}
+    </select>
+</mapper>

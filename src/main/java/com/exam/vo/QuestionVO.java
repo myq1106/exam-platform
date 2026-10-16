@@ -29,6 +29,9 @@ public class QuestionVO implements Serializable {
     /** 关联知识点 id */
     private Long knowledgeId;
 
+    /** 知识点名称（关联 knowledge_point 查询） */
+    private String knowledgeName;
+
     /** 选项 JSON */
     private String options;
 
@@ -41,6 +44,12 @@ public class QuestionVO implements Serializable {
     /** 审核状态：0 待审核 1 已审核 */
     private Integer reviewStatus;
 
+    /** 创建教师 id */
+    private Long creatorId;
+
     /** 创建时间 */
     private LocalDateTime createTime;
+
+    /** 更新时间 */
+    private LocalDateTime updateTime;
 }
